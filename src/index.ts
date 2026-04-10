@@ -15,5 +15,12 @@ export * from './domain/services/retry-executor.js';
 export * from './app/plugin-service.js';
 
 export * from './app/usecases/configure-plugin.js';
+export * from './app/usecases/batch-manage-mappings.js';
+export * from './app/usecases/list-pushed-pages.js';
+export * from './app/usecases/export-push-logs.js';
+export * from './app/usecases/test-connection.js';
+export * from './app/usecases/retry-failed-push.js';
+export * from './app/usecases/get-push-metrics.js';
+export * from './app/usecases/upload-attachments.js';
 
 export * from './infra/security/secret-store.js';

@@ -17,3 +17,9 @@ export interface PageResponse {
   title: string;
   content: string;
 }
+
+export interface AttachmentUploadResponse {
+  id: number;
+  url: string;
+  filename: string;
+}

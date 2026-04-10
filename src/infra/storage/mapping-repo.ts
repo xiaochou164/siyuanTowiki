@@ -6,6 +6,7 @@ export interface MappingRepository {
   upsert(mapping: DocMapping): Promise<void>;
   setStatus(docId: string, status: SyncStatus): Promise<void>;
   listByStatus(status: SyncStatus): Promise<DocMapping[]>;
+  listAll(): Promise<DocMapping[]>;
 }
 
 export class InMemoryMappingRepository implements MappingRepository {
@@ -27,5 +28,9 @@ export class InMemoryMappingRepository implements MappingRepository {
 
   async listByStatus(status: SyncStatus): Promise<DocMapping[]> {
     return [...this.mappings.values()].filter((item) => item.syncStatus === status);
+  }
+
+  async listAll(): Promise<DocMapping[]> {
+    return [...this.mappings.values()];
   }
 }

@@ -6,6 +6,9 @@ export interface BatchPushSummary {
   success: number;
   failed: number;
   skipped: number;
+  successDocIds: string[];
+  failedDocIds: string[];
+  skippedDocIds: string[];
 }
 
 export class BatchPushUseCase {
@@ -16,15 +19,27 @@ export class BatchPushUseCase {
       total: inputs.length,
       success: 0,
       failed: 0,
-      skipped: 0
+      skipped: 0,
+      successDocIds: [],
+      failedDocIds: [],
+      skippedDocIds: []
     };
 
     for (const input of inputs) {
       await this.queue.enqueue(async () => {
         const result = await this.pushDocument.execute(input);
-        if (result === 'success') summary.success += 1;
-        else if (result === 'skipped') summary.skipped += 1;
-        else summary.failed += 1;
+        if (result === 'success') {
+          summary.success += 1;
+          summary.successDocIds.push(input.siyuanDocId);
+          return;
+        }
+        if (result === 'skipped') {
+          summary.skipped += 1;
+          summary.skippedDocIds.push(input.siyuanDocId);
+          return;
+        }
+        summary.failed += 1;
+        summary.failedDocIds.push(input.siyuanDocId);
       });
     }
 

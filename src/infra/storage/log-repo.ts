@@ -4,6 +4,7 @@ export interface LogRepository {
   append(log: PushLog): Promise<void>;
   listByTraceId(traceId: string): Promise<PushLog[]>;
   listRecent(limit: number): Promise<PushLog[]>;
+  listAll(): Promise<PushLog[]>;
 }
 
 export class InMemoryLogRepository implements LogRepository {
@@ -19,5 +20,9 @@ export class InMemoryLogRepository implements LogRepository {
 
   async listRecent(limit: number): Promise<PushLog[]> {
     return this.logs.slice(-limit).reverse();
+  }
+
+  async listAll(): Promise<PushLog[]> {
+    return [...this.logs];
   }
 }
