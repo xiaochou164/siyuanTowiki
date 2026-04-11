@@ -1,0 +1,39 @@
+<svg width="1024" height="768" viewBox="0 0 1024 768" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1024" height="768" fill="#F4EFE6"/>
+  <rect x="0" y="0" width="1024" height="108" fill="#0F766E"/>
+  <rect x="78" y="154" width="868" height="516" rx="28" fill="#FFFFFF"/>
+  <rect x="78" y="154" width="868" height="72" rx="28" fill="#EDF5F1"/>
+  <rect x="78" y="198" width="868" height="28" fill="#EDF5F1"/>
+
+  <circle cx="118" cy="190" r="8" fill="#F38C7B"/>
+  <circle cx="146" cy="190" r="8" fill="#F0C35A"/>
+  <circle cx="174" cy="190" r="8" fill="#72C596"/>
+
+  <rect x="126" y="274" width="180" height="288" rx="18" fill="#E6F0EB"/>
+  <rect x="154" y="314" width="104" height="14" rx="7" fill="#9DB9AA"/>
+  <rect x="154" y="346" width="92" height="12" rx="6" fill="#BCD1C7"/>
+  <rect x="154" y="378" width="98" height="12" rx="6" fill="#BCD1C7"/>
+  <rect x="154" y="410" width="78" height="12" rx="6" fill="#BCD1C7"/>
+  <rect x="154" y="458" width="108" height="34" rx="17" fill="#0F766E"/>
+
+  <rect x="340" y="274" width="558" height="130" rx="20" fill="#F7F9FB"/>
+  <rect x="374" y="306" width="264" height="18" rx="9" fill="#18314A"/>
+  <rect x="374" y="340" width="356" height="12" rx="6" fill="#A8B6C4"/>
+  <rect x="374" y="366" width="320" height="12" rx="6" fill="#A8B6C4"/>
+
+  <rect x="340" y="430" width="558" height="132" rx="20" fill="#F7F9FB"/>
+  <rect x="374" y="464" width="168" height="16" rx="8" fill="#18314A"/>
+  <rect x="374" y="496" width="456" height="18" rx="9" fill="#0F766E"/>
+  <rect x="374" y="528" width="196" height="12" rx="6" fill="#A8B6C4"/>
+
+  <rect x="86" y="28" width="64" height="64" rx="18" fill="#FFFFFF"/>
+  <path d="M104 47C104 42.0294 108.029 38 113 38H122.439C124.826 38 127.115 38.9482 128.803 40.636L138.364 50.197C140.052 51.8848 141 54.1739 141 56.561V81C141 85.9706 136.971 90 132 90H113C108.029 90 104 85.9706 104 81V47Z" fill="#0F766E"/>
+  <path d="M129 38V52C129 54.7614 131.239 57 134 57H148" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M116 65H131" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+  <path d="M116 76H136" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+
+  <text x="174" y="72" fill="#FFFFFF" font-size="34" font-weight="700" font-family="Helvetica, Arial, sans-serif">SiYuan To Wiki</text>
+  <text x="174" y="98" fill="#D7F0E5" font-size="18" font-weight="500" font-family="Helvetica, Arial, sans-serif">Left dock publishing workflow for SiYuan notes</text>
+
+  <text x="126" y="624" fill="#4A657A" font-size="22" font-weight="500" font-family="Helvetica, Arial, sans-serif">配置 API Base URL 与 Key，发布当前文档，查看已发布链接和状态</text>
+</svg>

@@ -6,9 +6,11 @@
 
 ## Logo Assets
 - 集市/仓库图标: `icon.png`
+- 集市预览图: `preview.png`
 - 主 Logo: `assets/logo.svg`
 - 图标版: `assets/logo-mark.svg`
 - Banner: `assets/banner.svg`
+- Preview 源文件: `assets/preview.svg`
 
 > 说明：思源插件集市展示更依赖仓库根目录下的 `icon.png`，而不是在 `plugin.json` 中单独声明图标路径。
 
@@ -43,4 +45,11 @@
 npm run typecheck
 npm run build
 npm run test
+npm run package
 ```
+
+## 发布到思源集市
+- 思源集市读取的是发布包中的 `icon.png`，不是只看仓库默认分支。
+- 集市建议同时提供 `preview.png`，用于插件详情页预览图展示。
+- 发布前先执行 `npm run package`，会生成 `release/package.zip`。
+- 创建 GitHub Release 时，把 `release/package.zip` 作为附件上传，集市抓取到新的发布包后才会更新图标与包内容。
