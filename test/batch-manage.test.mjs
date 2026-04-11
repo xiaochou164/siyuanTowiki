@@ -30,9 +30,30 @@ test('batch manage pause and delete remote', async () => {
   const useCase = new BatchManageMappingsUseCase(mappingRepo, logRepo, fakeApi);
   const paused = await useCase.execute('trace-1', ['doc-1'], 'pause');
   assert.equal(paused.success, 1);
+  assert.equal(paused.skipped, 0);
   assert.equal((await mappingRepo.findByDocId('doc-1')).syncStatus, 'paused');
 
   const deleted = await useCase.execute('trace-2', ['doc-1'], 'delete_remote');
   assert.equal(deleted.success, 1);
+  assert.equal(deleted.skipped, 0);
   assert.equal((await mappingRepo.findByDocId('doc-1')).syncStatus, 'deleted');
+});
+
+test('batch manage counts noop operations as skipped', async () => {
+  const mappingRepo = new InMemoryMappingRepository();
+  const logRepo = new InMemoryLogRepository();
+  await mappingRepo.upsert({ siyuanDocId: 'doc-paused', wikiSlug: 'slug-paused', syncStatus: 'paused' });
+  await mappingRepo.upsert({ siyuanDocId: 'doc-deleted', wikiSlug: 'slug-deleted', syncStatus: 'deleted' });
+
+  const useCase = new BatchManageMappingsUseCase(mappingRepo, logRepo, fakeApi);
+  const paused = await useCase.execute('trace-3', ['doc-paused'], 'pause');
+  const deleted = await useCase.execute('trace-4', ['doc-deleted'], 'delete_remote');
+
+  assert.equal(paused.success, 0);
+  assert.equal(paused.failed, 0);
+  assert.equal(paused.skipped, 1);
+
+  assert.equal(deleted.success, 0);
+  assert.equal(deleted.failed, 0);
+  assert.equal(deleted.skipped, 1);
 });

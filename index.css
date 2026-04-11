@@ -1,0 +1,280 @@
+.siyuan-to-wiki-dock {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--b3-theme-on-surface);
+}
+
+.siyuan-to-wiki-dock__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--b3-border-color);
+  font-weight: 600;
+}
+
+.siyuan-to-wiki-dock__icon {
+  width: 16px;
+  height: 16px;
+}
+
+.siyuan-to-wiki-dock__section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.siyuan-to-wiki-dock__label {
+  font-size: 12px;
+  color: var(--b3-theme-on-surface-light);
+}
+
+.siyuan-to-wiki-dock__input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.siyuan-to-wiki-dock__status {
+  white-space: pre-wrap;
+  line-height: 1.5;
+  font-size: 12px;
+  color: var(--b3-theme-on-surface-light);
+  background: var(--b3-theme-surface);
+  border: 1px solid var(--b3-border-color);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.siyuan-to-wiki-dock__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.siyuan-to-wiki-dock__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.siyuan-to-wiki-dock__button {
+  width: 100%;
+  justify-content: center;
+}
+
+.siyuan-to-wiki-log-dialog {
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.siyuan-to-wiki-log-dialog__toolbar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.siyuan-to-wiki-log-dialog__list {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 4px;
+}
+
+.siyuan-to-wiki-log-dialog__item {
+  border: 1px solid var(--b3-border-color);
+  border-radius: 8px;
+  background: var(--b3-theme-background);
+  padding: 10px 12px;
+}
+
+.siyuan-to-wiki-log-dialog__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+
+.siyuan-to-wiki-log-dialog__time {
+  color: var(--b3-theme-on-surface-light);
+}
+
+.siyuan-to-wiki-log-dialog__level {
+  border-radius: 999px;
+  padding: 1px 8px;
+  font-size: 11px;
+  line-height: 18px;
+}
+
+.siyuan-to-wiki-log-dialog__level--info {
+  background: color-mix(in srgb, var(--b3-theme-primary) 12%, transparent);
+  color: var(--b3-theme-primary);
+}
+
+.siyuan-to-wiki-log-dialog__level--success {
+  background: color-mix(in srgb, var(--b3-card-success-color) 14%, transparent);
+  color: var(--b3-card-success-color);
+}
+
+.siyuan-to-wiki-log-dialog__level--error {
+  background: color-mix(in srgb, var(--b3-card-error-color) 14%, transparent);
+  color: var(--b3-card-error-color);
+}
+
+.siyuan-to-wiki-log-dialog__message {
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.55;
+}
+
+.siyuan-to-wiki-log-dialog__empty {
+  color: var(--b3-theme-on-surface-light);
+  border: 1px dashed var(--b3-border-color);
+  border-radius: 8px;
+  padding: 16px 12px;
+  text-align: center;
+}
+
+.siyuan-to-wiki-dock__hint {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--b3-theme-on-surface-light);
+  border-top: 1px dashed var(--b3-border-color);
+  padding-top: 8px;
+}
+
+.siyuan-to-wiki-dock__hint-link {
+  color: var(--b3-theme-primary);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--b3-theme-primary) 45%, transparent);
+}
+
+.siyuan-to-wiki-dock__hint-link:hover {
+  color: var(--b3-theme-primary);
+  border-bottom-color: var(--b3-theme-primary);
+}
+
+.siyuan-to-wiki-published-dialog {
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.siyuan-to-wiki-published-dialog__toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.siyuan-to-wiki-published-dialog__summary {
+  font-size: 12px;
+  color: var(--b3-theme-on-surface-light);
+}
+
+.siyuan-to-wiki-published-dialog__search {
+  width: 260px;
+  max-width: 100%;
+}
+
+.siyuan-to-wiki-published-dialog__list {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 4px;
+}
+
+.siyuan-to-wiki-published-dialog__item {
+  border: 1px solid var(--b3-border-color);
+  border-radius: 10px;
+  background: var(--b3-theme-background);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.siyuan-to-wiki-published-dialog__item--active {
+  border-color: color-mix(in srgb, var(--b3-theme-primary) 45%, var(--b3-border-color));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--b3-theme-primary) 18%, transparent);
+}
+
+.siyuan-to-wiki-published-dialog__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.siyuan-to-wiki-published-dialog__title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--b3-theme-on-surface);
+}
+
+.siyuan-to-wiki-published-dialog__status {
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 11px;
+  line-height: 18px;
+  white-space: nowrap;
+}
+
+.siyuan-to-wiki-published-dialog__status--synced {
+  background: color-mix(in srgb, var(--b3-card-success-color) 14%, transparent);
+  color: var(--b3-card-success-color);
+}
+
+.siyuan-to-wiki-published-dialog__status--content-only {
+  background: color-mix(in srgb, var(--b3-theme-primary) 14%, transparent);
+  color: var(--b3-theme-primary);
+}
+
+.siyuan-to-wiki-published-dialog__status--error {
+  background: color-mix(in srgb, var(--b3-card-error-color) 14%, transparent);
+  color: var(--b3-card-error-color);
+}
+
+.siyuan-to-wiki-published-dialog__meta {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--b3-theme-on-surface-light);
+  word-break: break-word;
+}
+
+.siyuan-to-wiki-published-dialog__link {
+  color: var(--b3-theme-primary);
+  text-decoration: none;
+}
+
+.siyuan-to-wiki-published-dialog__link:hover {
+  text-decoration: underline;
+}
+
+.siyuan-to-wiki-published-dialog__actions {
+  margin-top: 4px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.siyuan-to-wiki-published-dialog__empty {
+  color: var(--b3-theme-on-surface-light);
+  border: 1px dashed var(--b3-border-color);
+  border-radius: 8px;
+  padding: 16px 12px;
+  text-align: center;
+}

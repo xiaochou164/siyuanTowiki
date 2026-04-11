@@ -22,5 +22,8 @@ export * from './app/usecases/test-connection.js';
 export * from './app/usecases/retry-failed-push.js';
 export * from './app/usecases/get-push-metrics.js';
 export * from './app/usecases/upload-attachments.js';
+export * from './app/usecases/repush-documents.js';
+export * from './app/usecases/get-trace-logs.js';
+export * from './app/usecases/check-push-readiness.js';
 
 export * from './infra/security/secret-store.js';

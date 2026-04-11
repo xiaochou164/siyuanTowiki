@@ -1,6 +1,7 @@
 import { assertTransition } from '../../domain/services/state-machine.js';
 import { retriableByHttpCode, withRetry } from '../../domain/services/retry-executor.js';
 import type { WikiApiClient } from '../../infra/api/wiki-api-client.js';
+import type { ConfigRepository } from '../../infra/storage/config-repo.js';
 import type { LogRepository } from '../../infra/storage/log-repo.js';
 import type { MappingRepository } from '../../infra/storage/mapping-repo.js';
 
@@ -9,10 +10,16 @@ export class DeleteRemotePageUseCase {
     private readonly apiClient: WikiApiClient,
     private readonly mappingRepo: MappingRepository,
     private readonly logRepo: LogRepository,
-    private readonly retryTimes = 3
+    private readonly retryTimes = 3,
+    private readonly configRepo?: ConfigRepository
   ) {}
 
-  async execute(traceId: string, siyuanDocId: string): Promise<void> {
+  async execute(traceId: string, siyuanDocId: string, confirmed = false): Promise<void> {
+    const config = this.configRepo ? await this.configRepo.get() : null;
+    if (config?.deleteConfirmEnabled && !confirmed) {
+      throw new Error('Delete confirmation required');
+    }
+
     const mapping = await this.mappingRepo.findByDocId(siyuanDocId);
     if (!mapping?.wikiSlug) throw new Error('No mapping found');
 

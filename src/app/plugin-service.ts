@@ -15,6 +15,14 @@ import { ExportPushLogsUseCase, type ExportFormat } from './usecases/export-push
 import { RetryFailedPushUseCase } from './usecases/retry-failed-push.js';
 import { GetPushMetricsUseCase, type PushMetrics } from './usecases/get-push-metrics.js';
 import { UploadAttachmentsUseCase, type AttachmentInput, type AttachmentUploadResult } from './usecases/upload-attachments.js';
+import { RepushDocumentsUseCase } from './usecases/repush-documents.js';
+import { GetTraceLogsUseCase } from './usecases/get-trace-logs.js';
+import {
+  CheckPushReadinessUseCase,
+  type BatchPushReadinessSummary,
+  type PushReadinessResult
+} from './usecases/check-push-readiness.js';
+import type { PushLog } from '../domain/entities/push-log.js';
 
 export class PluginService {
   constructor(
@@ -30,7 +38,10 @@ export class PluginService {
     private readonly testConnectionUseCase: TestConnectionUseCase,
     private readonly exportPushLogsUseCase: ExportPushLogsUseCase,
     private readonly getPushMetricsUseCase: GetPushMetricsUseCase,
-    private readonly uploadAttachmentsUseCase: UploadAttachmentsUseCase
+    private readonly uploadAttachmentsUseCase: UploadAttachmentsUseCase,
+    private readonly repushDocumentsUseCase: RepushDocumentsUseCase,
+    private readonly getTraceLogsUseCase: GetTraceLogsUseCase,
+    private readonly checkPushReadinessUseCase: CheckPushReadinessUseCase
   ) {}
 
   configure(input: ConfigurePluginInput) {
@@ -49,12 +60,28 @@ export class PluginService {
     return this.batchPushUseCase.execute(inputs);
   }
 
+  checkPushReadiness(input: PushDocumentInput): Promise<PushReadinessResult> {
+    return this.checkPushReadinessUseCase.execute(input);
+  }
+
+  batchCheckPushReadiness(inputs: PushDocumentInput[]): Promise<BatchPushReadinessSummary> {
+    return this.checkPushReadinessUseCase.executeBatch(inputs);
+  }
+
   retryFailedPush(previous: BatchPushSummary, allInputs: PushDocumentInput[]): Promise<BatchPushSummary> {
     return this.retryFailedPushUseCase.execute(previous, allInputs);
   }
 
-  deleteRemote(traceId: string, siyuanDocId: string) {
-    return this.deleteRemotePageUseCase.execute(traceId, siyuanDocId);
+  repush(input: PushDocumentInput) {
+    return this.repushDocumentsUseCase.executeOne(input);
+  }
+
+  batchRepush(inputs: PushDocumentInput[]): Promise<BatchPushSummary> {
+    return this.repushDocumentsUseCase.executeBatch(inputs);
+  }
+
+  deleteRemote(traceId: string, siyuanDocId: string, confirmed = false) {
+    return this.deleteRemotePageUseCase.execute(traceId, siyuanDocId, confirmed);
   }
 
   pause(siyuanDocId: string) {
@@ -73,12 +100,21 @@ export class PluginService {
     return this.listPushedPagesUseCase.execute(input);
   }
 
-  batchManage(traceId: string, docIds: string[], action: BatchManageAction): Promise<BatchManageSummary> {
-    return this.batchManageMappingsUseCase.execute(traceId, docIds, action);
+  batchManage(
+    traceId: string,
+    docIds: string[],
+    action: BatchManageAction,
+    options: { confirmed?: boolean } = {}
+  ): Promise<BatchManageSummary> {
+    return this.batchManageMappingsUseCase.execute(traceId, docIds, action, options);
   }
 
   exportLogs(limit: number, format: ExportFormat): Promise<string> {
     return this.exportPushLogsUseCase.execute(limit, format);
+  }
+
+  getTraceLogs(traceId: string): Promise<PushLog[]> {
+    return this.getTraceLogsUseCase.execute(traceId);
   }
 
   getMetrics(): Promise<PushMetrics> {

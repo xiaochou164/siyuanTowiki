@@ -1,0 +1,24 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mark-bg" x1="28" y1="24" x2="228" y2="232" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7F3E8"/>
+      <stop offset="1" stop-color="#E3F1F1"/>
+    </linearGradient>
+    <linearGradient id="mark-accent" x1="105" y1="93" x2="198" y2="193" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#28A8A2"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="16" y="16" width="224" height="224" rx="56" fill="url(#mark-bg)"/>
+  <path d="M64 76C64 67.1634 71.1634 60 80 60H134.745C138.989 60 143.059 61.6857 146.059 64.6863L171.314 89.9411C174.314 92.9417 176 97.011 176 101.255V156C176 164.837 168.837 172 160 172H80C71.1634 172 64 164.837 64 156V76Z" fill="white" stroke="#D6E1EF" stroke-width="8"/>
+  <path d="M140 61V88C140 94.6274 145.373 100 152 100H179" stroke="#C5D6EB" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="84" y="94" width="52" height="9" rx="4.5" fill="#D9E5F5"/>
+  <rect x="84" y="113" width="72" height="9" rx="4.5" fill="#D9E5F5"/>
+  <rect x="84" y="132" width="56" height="9" rx="4.5" fill="#D9E5F5"/>
+
+  <circle cx="162" cy="152" r="46" fill="url(#mark-accent)"/>
+  <path d="M143 158C143 153.582 146.582 150 151 150H169V132C169 127.582 172.582 124 177 124C181.418 124 185 127.582 185 132V170C185 174.418 181.418 178 177 178H139C134.582 178 131 174.418 131 170C131 165.582 134.582 162 139 162H156.172L129.657 135.485C126.533 132.361 126.533 127.296 129.657 124.172C132.781 121.048 137.846 121.048 140.971 124.172L167.485 150.686V132.5" fill="white"/>
+  <path d="M108 164L95 177" stroke="#28A8A2" stroke-width="9" stroke-linecap="round"/>
+  <path d="M121 151L108 164" stroke="#28A8A2" stroke-width="9" stroke-linecap="round"/>
+</svg>

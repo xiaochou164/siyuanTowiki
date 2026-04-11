@@ -55,7 +55,7 @@ export class PushDocumentUseCase {
       const updated = await withRetry(
         async () => {
           const res = await this.apiClient.updatePage(mapping.wikiSlug!, {
-            title: input.title,
+            title: config?.contentOnlyUpdateEnabled ? undefined : input.title,
             content: input.content,
             tags: input.tags
           });
