@@ -7,6 +7,8 @@ export interface PushMetrics {
   failed: number;
   successRate: number;
   byAction: Record<ActionType, number>;
+  byErrorCode: Record<string, number>;
+  byHttpCode: Record<string, number>;
 }
 
 export class GetPushMetricsUseCase {
@@ -27,9 +29,18 @@ export class GetPushMetricsUseCase {
       unlink: 0,
       repush: 0
     };
+    const byErrorCode: Record<string, number> = {};
+    const byHttpCode: Record<string, number> = {};
 
     for (const log of logs) {
       byAction[log.actionType] += 1;
+      if (log.errorCode) {
+        byErrorCode[log.errorCode] = (byErrorCode[log.errorCode] ?? 0) + 1;
+      }
+      if (typeof log.httpCode === 'number') {
+        const code = String(log.httpCode);
+        byHttpCode[code] = (byHttpCode[code] ?? 0) + 1;
+      }
     }
 
     return {
@@ -37,7 +48,9 @@ export class GetPushMetricsUseCase {
       success,
       failed,
       successRate: total === 0 ? 0 : Number(((success / total) * 100).toFixed(2)),
-      byAction
+      byAction,
+      byErrorCode,
+      byHttpCode
     };
   }
 }

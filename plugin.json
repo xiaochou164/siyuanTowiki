@@ -1,0 +1,44 @@
+{
+  "name": "siyuan-to-wiki",
+  "author": "xiaochou164",
+  "url": "https://github.com/xiaochou164/siyuanTowiki",
+  "version": "0.1.0",
+  "minAppVersion": "3.0.0",
+  "backends": [
+    "windows",
+    "linux",
+    "darwin",
+    "ios",
+    "android",
+    "harmony",
+    "docker"
+  ],
+  "frontends": [
+    "desktop",
+    "mobile",
+    "browser-desktop",
+    "browser-mobile",
+    "desktop-window"
+  ],
+  "displayName": {
+    "default": "SiYuan To Wiki",
+    "zh_CN": "思源推送 Wiki"
+  },
+  "description": {
+    "default": "Publish the current SiYuan document to your Wiki from a left sidebar workflow.",
+    "zh_CN": "在思源左侧面板中完成 Wiki 配置、连接测试与当前文档发布。"
+  },
+  "readme": {
+    "default": "README.md",
+    "zh_CN": "README.md"
+  },
+  "funding": {
+    "custom": []
+  },
+  "keywords": [
+    "siyuan",
+    "wiki",
+    "sync",
+    "plugin"
+  ]
+}

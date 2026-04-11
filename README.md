@@ -1,6 +1,16 @@
-# Siyuan to Wiki Plugin (Skeleton)
+# Siyuan to Wiki Plugin
 
-本仓库已初始化为思源笔记 → Wiki 推送插件的项目骨架，并已进入持续迭代。
+![Siyuan to Wiki banner](assets/banner.svg)
+
+思源笔记到 Wiki 的同步发布插件，支持在思源左侧面板内完成配置、连接检查、当前文档发布、已发布列表查看与链接管理。
+
+## Logo Assets
+- 集市/仓库图标: `icon.png`
+- 主 Logo: `assets/logo.svg`
+- 图标版: `assets/logo-mark.svg`
+- Banner: `assets/banner.svg`
+
+> 说明：思源插件集市展示更依赖仓库根目录下的 `icon.png`，而不是在 `plugin.json` 中单独声明图标路径。
 
 ## 当前包含
 - 分层目录结构（app/domain/infra/ui/shared）
@@ -8,10 +18,18 @@
 - API Client / Repository / Queue 的接口与基础实现
 - 首批 usecases（推送、批量、删除、暂停恢复、解除映射、配置）
 - 已推送页面管理能力（列表筛选、批量暂停/恢复/解除映射/删除远端）
+- 已推送页面管理能力（列表支持状态/关键词/时间范围筛选，批量暂停/恢复/解除映射/删除远端）
+- 单条立即重推与批量重推入口（复用现有推送流程）
 - 批量推送失败项重试能力（仅重试 failedDocIds）
 - 连接测试能力（基于本地配置解密 API Key 后调用 `/auth/me`）
+- 连接测试回退能力：`/auth/me` 不可用时自动回退 `/spaces`，并区分 401/403/网络错误提示
+- 删除远端保护：启用删除确认开关时，单条和批量删除都必须显式确认
+- 更新策略开关：可配置“仅正文更新（保留远端标题）”
+- 只读演练预检能力：单篇/批量返回可推送性、预计动作与跳过原因
 - 推送日志导出能力（JSON / CSV）
+- 单次任务日志查询能力（按 `traceId` 获取全链路日志）
 - 推送指标统计能力（成功率、成功/失败数、按 actionType 聚合）
+- 推送指标统计能力（成功率、成功/失败数、按 actionType / errorCode / httpCode 聚合）
 - 附件上传能力（对接 `/attachments/upload`，支持批量上传结果返回）
 - 404 自动修复能力（更新失败时可自动重建远端页面并刷新映射）
 - 配置用例（`ConfigurePluginUseCase`）与密钥封装（`SecretStore`）

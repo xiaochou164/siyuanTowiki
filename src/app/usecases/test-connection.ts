@@ -1,6 +1,7 @@
 import type { ConfigRepository } from '../../infra/storage/config-repo.js';
 import type { SecretStore } from '../../infra/security/secret-store.js';
 import { FetchWikiApiClient } from '../../infra/api/wiki-api-client.js';
+import type { ApiResult } from '../../shared/types.js';
 
 export interface ConnectionTestResult {
   success: boolean;
@@ -8,8 +9,18 @@ export interface ConnectionTestResult {
   httpCode?: number;
 }
 
+export interface ConnectionProbeClient {
+  checkConnection(): Promise<ApiResult<{ ok: true }>>;
+  checkSpacesConnection(): Promise<ApiResult<{ ok: true }>>;
+}
+
 export class TestConnectionUseCase {
-  constructor(private readonly configRepo: ConfigRepository, private readonly secretStore: SecretStore) {}
+  constructor(
+    private readonly configRepo: ConfigRepository,
+    private readonly secretStore: SecretStore,
+    private readonly createClient: (baseUrl: string, apiKey: string) => ConnectionProbeClient = (baseUrl, apiKey) =>
+      new FetchWikiApiClient(baseUrl, apiKey)
+  ) {}
 
   async execute(): Promise<ConnectionTestResult> {
     const config = await this.configRepo.get();
@@ -18,17 +29,54 @@ export class TestConnectionUseCase {
     }
 
     const apiKey = this.secretStore.unseal(config.apiKeyEncrypted);
-    const client = new FetchWikiApiClient(config.baseUrl, apiKey);
-    const result = await client.checkConnection();
+    const client = this.createClient(config.baseUrl, apiKey);
+    const authResult = await client.checkConnection();
 
-    if (!result.ok) {
+    if (authResult.ok) {
       return {
-        success: false,
-        message: `${result.error.errorCode}: ${result.error.message}`,
-        httpCode: result.error.httpCode
+        success: true,
+        message: 'Connection successful via /auth/me',
+        httpCode: authResult.httpCode
       };
     }
 
-    return { success: true, message: 'Connection successful', httpCode: result.httpCode };
+    if (authResult.error.httpCode === 401) {
+      return {
+        success: false,
+        message: 'Authentication failed: API Key is invalid or expired',
+        httpCode: authResult.error.httpCode
+      };
+    }
+
+    if (authResult.error.httpCode === 403) {
+      return {
+        success: false,
+        message: 'Permission denied: API Key does not have access to this Wiki',
+        httpCode: authResult.error.httpCode
+      };
+    }
+
+    if (authResult.error.errorCode === 'NETWORK_ERROR') {
+      return {
+        success: false,
+        message: `Network error: ${authResult.error.message}`,
+        httpCode: authResult.error.httpCode
+      };
+    }
+
+    const spacesResult = await client.checkSpacesConnection();
+    if (spacesResult.ok) {
+      return {
+        success: true,
+        message: 'Connection successful via /spaces',
+        httpCode: spacesResult.httpCode
+      };
+    }
+
+    return {
+      success: false,
+      message: `${spacesResult.error.errorCode}: ${spacesResult.error.message}`,
+      httpCode: spacesResult.error.httpCode
+    };
   }
 }

@@ -6,6 +6,7 @@ export interface ConfigurePluginInput {
   apiKey: string;
   defaultVisibility?: 'public' | 'private';
   defaultSpaceId?: number;
+  contentOnlyUpdateEnabled?: boolean;
   concurrency?: number;
   retryTimes?: number;
   deleteConfirmEnabled?: boolean;
@@ -21,6 +22,7 @@ export class ConfigurePluginUseCase {
       apiKeyEncrypted: this.secretStore.seal(input.apiKey),
       defaultVisibility: input.defaultVisibility ?? 'public',
       defaultSpaceId: input.defaultSpaceId,
+      contentOnlyUpdateEnabled: input.contentOnlyUpdateEnabled ?? false,
       concurrency: Math.max(1, input.concurrency ?? 1),
       retryTimes: Math.max(1, input.retryTimes ?? 3),
       deleteConfirmEnabled: input.deleteConfirmEnabled ?? true,

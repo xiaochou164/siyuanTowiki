@@ -3,6 +3,7 @@ export interface PluginConfig {
   apiKeyEncrypted: string;
   defaultVisibility: 'public' | 'private';
   defaultSpaceId?: number;
+  contentOnlyUpdateEnabled: boolean;
   concurrency: number;
   retryTimes: number;
   deleteConfirmEnabled: boolean;

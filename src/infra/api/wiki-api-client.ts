@@ -17,6 +17,12 @@ export class FetchWikiApiClient implements WikiApiClient {
     return this.request('/auth/me', { method: 'GET' });
   }
 
+  async checkSpacesConnection(): Promise<ApiResult<{ ok: true }>> {
+    const result = await this.request<unknown[]>('/spaces', { method: 'GET' });
+    if (!result.ok) return result;
+    return { ok: true, data: { ok: true }, httpCode: result.httpCode };
+  }
+
   async createPage(payload: CreatePagePayload): Promise<ApiResult<PageResponse>> {
     return this.request('/pages', { method: 'POST', body: JSON.stringify(payload) });
   }

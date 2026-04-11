@@ -1,0 +1,44 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="64" y1="56" x2="448" y2="456" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8F4EA"/>
+      <stop offset="1" stop-color="#E8F3F1"/>
+    </linearGradient>
+    <linearGradient id="card" x1="132" y1="110" x2="330" y2="342" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F5F7FB"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="214" y1="170" x2="394" y2="350" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#28A8A2"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+    <filter id="shadow" x="94" y="80" width="320" height="312" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="20"/>
+      <feGaussianBlur stdDeviation="19"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.145098 0 0 0 0 0.2 0 0 0 0 0.341176 0 0 0 0.16 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+    </filter>
+  </defs>
+
+  <rect x="32" y="32" width="448" height="448" rx="112" fill="url(#bg)"/>
+  <circle cx="412" cy="114" r="28" fill="#DDF4F1"/>
+  <circle cx="106" cy="394" r="18" fill="#D7E7FF"/>
+  <path d="M398 132C398 116.536 410.536 104 426 104V104C441.464 104 454 116.536 454 132V132C454 147.464 441.464 160 426 160V160C410.536 160 398 147.464 398 132V132Z" fill="#BFE9E4"/>
+
+  <g filter="url(#shadow)">
+    <path d="M136 120C136 106.745 146.745 96 160 96H270.118C276.483 96 282.588 98.5286 287.088 103.029L339.971 155.912C344.471 160.412 347 166.517 347 172.882V328C347 341.255 336.255 352 323 352H160C146.745 352 136 341.255 136 328V120Z" fill="url(#card)"/>
+    <path d="M278 97.4092V144C278 153.941 286.059 162 296 162H342.591" stroke="#C6D5E9" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <rect x="174" y="162" width="92" height="16" rx="8" fill="#D9E5F5"/>
+  <rect x="174" y="196" width="128" height="16" rx="8" fill="#D9E5F5"/>
+  <rect x="174" y="230" width="104" height="16" rx="8" fill="#D9E5F5"/>
+
+  <circle cx="326" cy="294" r="98" fill="url(#accent)"/>
+  <path d="M287 306C287 296.059 295.059 288 305 288H343V250C343 240.059 351.059 232 361 232C370.941 232 379 240.059 379 250V331C379 340.941 370.941 349 361 349H280C270.059 349 262 340.941 262 331C262 321.059 270.059 313 280 313H318.787L259.606 253.819C252.576 246.789 252.576 235.393 259.606 228.363C266.636 221.333 278.031 221.333 285.062 228.363L344.243 287.544V249.5" fill="white"/>
+  <path d="M223 314L196 341" stroke="#28A8A2" stroke-width="18" stroke-linecap="round"/>
+  <path d="M250 287L223 314" stroke="#28A8A2" stroke-width="18" stroke-linecap="round"/>
+</svg>
